@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giphy Images</title>
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:300,400,600" rel="stylesheet">
+</head>
+
+<body>
+  <div id="btnlist"></div>
+
+  <form>
+    <label>Pixar Movie Characters</label>
+     <input type="text" id="pixar-char" placeholder="Enter Pixar Movie Characater"><br>
+
+      <!-- This button will trigger our AJAX call -->
+      <input id="add-char" type="submit" value="Add Character" class="btnsubmit">
+  </form>
+
+  <div id="imagelist"></div>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){ 
+    topics = ["Sheriff Woody","Buzz Lightyear","Mr. Potatoe Head","Aliens","James Sullivan","Boo","Mr. Incredible","Elastigirl","Edna Mode","Lightning McQueen"];
+
+    function getImages(q){
+      var apiKey ="dc6zaTOxFJmzC";
+      var limit = 10;
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + q + "&api_key=" + apiKey + "&limit=" + limit;
+
+        $.ajax({
+          url: queryURL,
+          method: 'GET'
+        }).done(function(response) {
+           console.log(response);
+           for (var i=0; i < limit; i++){
+             var imageStill =`<figure><p>Rating: "${response.data[i].rating}"</p><video poster = "${response.data[i].images.fixed_height_still.url}" 
+                 source src ="${response.data[i].images.fixed_height.mp4}"></video></figure>`
+             $("#imagelist").append(imageStill);
+           }
+
+         
+        });
+    }
+
+    function createButtons(){
+      //Create Guess Button Template
+      $("#btnlist").empty();
+       for (var i=0; i < topics.length; i++){
+          var id = `btn${i}`
+          var btntemplate =
+          `<button class = "btn" id="${id}" value="${topics[i]}">${topics[i]}</button>`
+          $("#btnlist").append(btntemplate);
+        }
+    }
+    
+  
+
+    createButtons();
+
+    $("#btnlist").on("click", ".btn", function(){
+      var item = ($(this).attr("value"));
+      $("#imagelist").empty();
+      getImages(item);
+    })
+
+    $("#imagelist").on("click","video", function(){
+        if ($(this).get(0).paused) {
+          $(this).get(0).play();
+        } else {
+          $(this).get(0).pause();
+        }
+    })
+
+    $("#add-char").on("click",function(event){
+       event.preventDefault();
+       var char = $("#pixar-char").val().trim();
+       topics.push(char);
+       createButtons();
+    })
+
+  })   
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+body{
+  font-family: 'Josefin Slab', serif;
+  font-size: 16px;
+}
+
+.btn, .btnsubmit{
+  margin: 10px;
+  padding:5px;
+  min-width:150px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  font-size: 16px;
+  font-family: 'Josefin Slab 700', serif;
+}
+.btnsubmit{
+  margin: 0px;
+
+
+}
+p{
+
+  margin: 10px 15px;
+
+}
+
+figure {
+    display:inline-block;
+    margin: 25px 15px;
+    vertical-align: text-top;
+}
+form{
+  margin:50px 50px 0 0;
+  float:right;
+
+}
+form label{
+  display:block;
+  padding-bottom:8px;
+}
+form #pixar-char{
+  width:300px;
+  padding: 8px;
+}
+form #add-char{
+  width:100px;
+  margin-top:10px;
+
+}
+#imagelist{
+  max-width:75%;
+}
