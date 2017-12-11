@@ -12,8 +12,12 @@
         }).done(function(response) {
            console.log(response);
            for (var i=0; i < limit; i++){
-             var imageStill =`<figure><p>Rating: "${response.data[i].rating}"</p><video poster = "${response.data[i].images.fixed_height_still.url}" 
-                 source src ="${response.data[i].images.fixed_height.mp4}"></video></figure>`
+             var imageStill =`<figure><p>Rating: "${response.data[i].rating}"</p>
+                              <img src = "${response.data[i].images.fixed_height_still.url}" 
+                              data-still = "${response.data[i].images.fixed_height_still.url}"
+                              data-animate ="${response.data[i].images.fixed_height.url}" 
+                              data-state="still" class="gif">
+                              </figure>`
              $("#imagelist").append(imageStill);
            }
 
@@ -42,12 +46,24 @@
       getImages(item);
     })
 
-    $("#imagelist").on("click","video", function(){
-        if ($(this).get(0).paused) {
-          $(this).get(0).play();
-        } else {
-          $(this).get(0).pause();
-        }
+    // $("#imagelist").on("click","video", function(){
+    //     if ($(this).get(0).paused) {
+    //       $(this).get(0).play();
+    //     } else {
+    //       $(this).get(0).pause();
+    //     }
+    // })
+
+    $("#imagelist").on("click",".gif", function() {
+      var state = $(this).attr("data-state");
+      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
     })
 
     $("#add-char").on("click",function(event){
