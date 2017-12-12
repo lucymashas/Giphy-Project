@@ -33,11 +33,10 @@ figure {
     vertical-align: text-top;
 
 }
-video {
+video, img {
   border-radius: 3px;
   overflow:hidden;
   background:#000;
-  color:#ccc;
   border: 1px solid rgba(0,0,0,0.8);
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   cursor: pointer;

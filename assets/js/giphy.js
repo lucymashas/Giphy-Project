@@ -18,6 +18,11 @@
                               data-animate ="${response.data[i].images.fixed_height.url}" 
                               data-state="still" class="gif">
                               </figure>`
+
+             // var imageStill =`<figure><p>Rating: "${response.data[i].rating}"</p>
+             //                  <video poster = "${response.data[i].images.fixed_height_still.url}" 
+             //                  src ="${response.data[i].images.fixed_height.mp4}" >
+             //                  </figure>`
              $("#imagelist").append(imageStill);
            }
 
@@ -45,7 +50,7 @@
       $("#imagelist").empty();
       getImages(item);
     })
-
+    //using the video tag and pulling down the mp4
     // $("#imagelist").on("click","video", function(){
     //     if ($(this).get(0).paused) {
     //       $(this).get(0).play();
