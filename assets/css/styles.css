@@ -10,17 +10,18 @@ body{
   min-width:150px;
   background-color: #2698e2;
   color: #f1f1f1;
-  margin-right: 10px;
   font-size: 16px;
   font-family: 'Josefin Slab 700', serif;
   cursor: pointer;
 }
 .btnsubmit{
   margin: 0px;
+  font-size:18px;
 
 }
 #btnlist{
   border-bottom: 1px solid #b5c3d5;
+  padding: 10px 15px
 }
 p{
 
@@ -54,6 +55,7 @@ form{
 form label{
   display:block;
   padding-bottom:8px;
+  font-size:21px;
 }
 form input::placeholder{
   color:#eee;
@@ -68,7 +70,7 @@ form input:onblur::-webkit-input-placeholder {
 form #pixar-char{
   width:300px;
   padding: 8px;
-  font-size: 14px
+  font-size: 16px
 }
 form #add-char{
   width:100px;
